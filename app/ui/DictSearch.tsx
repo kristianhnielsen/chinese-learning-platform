@@ -34,8 +34,8 @@ export default function DictSearch() {
 
   return (
     <search className="flex items-center flex-col gap-4 w-full">
-      <div className="flex p-4 bg-light gap-2 items-center rounded-full w-full h-20">
-        <AiOutlineSearch className="fill-dark w-12 h-12" />
+      <div className="flex p-4 bg-light gap-2 items-center rounded-full w-full">
+        <AiOutlineSearch className="fill-dark w-8 h-8" />
         <input
           type="text"
           placeholder="Search..."
