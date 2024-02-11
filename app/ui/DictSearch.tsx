@@ -33,7 +33,7 @@ export default function DictSearch() {
   }, 50);
 
   return (
-    <search className="flex items-center flex-col gap-4 w-full">
+    <search className="flex items-center flex-col gap-4 w-full max-w-xl">
       <div className="flex p-4 bg-light gap-2 items-center rounded-full w-full">
         <AiOutlineSearch className="fill-dark w-8 h-8" />
         <input
@@ -47,11 +47,7 @@ export default function DictSearch() {
         />
       </div>
       {searchParams.get("query") && (
-        <label
-          htmlFor="sort"
-          className="text-light text-sm flex gap-4 items-center"
-        >
-          Sort By:{" "}
+        <label htmlFor="sort" className="text-light text-sm flex items-center">
           <select
             name="sort"
             id="sort"

@@ -30,7 +30,7 @@ export default async function DictEntries({
         )}
       </div>
       {filteredDictionary.length != 0 && (
-        <div className="bg-light text-dark flex flex-col overflow-y-scroll max-w-xl max-h-80 rounded-lg">
+        <div className="bg-light text-dark flex flex-col overflow-y-scroll max-w-xl w-full max-h-80 rounded-lg">
           {filteredDictionary.map((dictEntry) => (
             <a
               key={dictEntry.id}
