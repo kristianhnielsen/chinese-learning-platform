@@ -1,20 +1,60 @@
+"use client";
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
+import {
+  Fa1,
+  Fa2,
+  Fa3,
+  Fa4,
+  Fa5,
+  Fa6,
+  FaA,
+  FaArrowDown19,
+  FaBookOpen,
+  FaLanguage,
+} from "react-icons/fa6";
 
 export default function SideNav() {
+  const [menuVisible, setMenuVisible] = useState(true);
   return (
-    <nav className="p-8 min-h-full flex flex-col gap-8 text-light  border-r-4 border-light">
-      <SideNavLink href="/">Dictionary</SideNavLink>
-      <div className="grid gap-2 text-nowrap">
-        <p className="border-b-2 border-light/50">Vocabulary Lists</p>
-        <div className="pl-4 grid">
-          <SideNavLink href="/most-common">Most Common Characters</SideNavLink>
-          <SideNavLink href="/hsk-1">HSK 1</SideNavLink>
-          <SideNavLink href="/hsk-2">HSK 2</SideNavLink>
-          <SideNavLink href="/hsk-3">HSK 3</SideNavLink>
-          <SideNavLink href="/hsk-4">HSK 4</SideNavLink>
-          <SideNavLink href="/hsk-5">HSK 5</SideNavLink>
-          <SideNavLink href="/hsk-6">HSK 6</SideNavLink>
+    <nav
+      data-visible={menuVisible}
+      className={twMerge(
+        "p-4 min-h-full flex flex-col gap-4 transition-all items-center text-light border-r-4 border-light",
+        !menuVisible && "w-4"
+      )}
+    >
+      <SideNavLink className="flex items-center gap-2" href="/">
+        <FaLanguage className="h-8 w-8" />
+      </SideNavLink>
+      <div className="grid gap-2">
+        <p className="flex gap-1 border-b-2 border-light/50">
+          <FaA className="h-8 w-8" />
+        </p>
+        <div className="grid gap-4 justify-center">
+          <SideNavLink href="/most-common">
+            <FaArrowDown19 />
+          </SideNavLink>
+          <SideNavLink href="/hsk-1">
+            <Fa1 />
+          </SideNavLink>
+          <SideNavLink href="/hsk-2">
+            <Fa2 />
+          </SideNavLink>
+          <SideNavLink href="/hsk-3">
+            <Fa3 />
+          </SideNavLink>
+          <SideNavLink href="/hsk-4">
+            <Fa4 />
+          </SideNavLink>
+          <SideNavLink href="/hsk-5">
+            <Fa5 />
+          </SideNavLink>
+          <SideNavLink href="/hsk-6">
+            <Fa6 />
+          </SideNavLink>
         </div>
       </div>
     </nav>
@@ -24,12 +64,20 @@ export default function SideNav() {
 function SideNavLink({
   children,
   href,
+  className,
 }: {
   children: React.ReactNode;
   href: Url;
+  className?: string;
 }) {
   return (
-    <Link className="hover:bg-light/10 p-2 rounded transition-all" href={href}>
+    <Link
+      className={twMerge(
+        "hover:bg-light/10 rounded transition-all flex items-center gap-2",
+        className
+      )}
+      href={href}
+    >
       {children}
     </Link>
   );
