@@ -9,7 +9,7 @@ export default function DictionaryEntryCard({
     <div
       key={entry.id}
       id={entry.simplified!}
-      className="grid gap-4 border-2 rounded-lg w-full border-light p-4"
+      className="grid gap-4 border-2 rounded-lg border-light p-4"
     >
       <div className="flex gap-8 items-center">
         <div className="text-primary flex gap-2 text-2xl">

@@ -14,7 +14,7 @@ export default async function Hsk({ params }: { params: { hsk: string } }) {
   const uniqueCharacters = getUniqueCharacters(entries);
 
   return (
-    <main className="flex flex-col items-center text-light scroll-smooth gap-8 p-12 w-full">
+    <>
       <h1 className=" text-primary font-semibold text-2xl">HSK {hskLevel}</h1>
       <p>
         HSK {hskLevel} has {uniqueCharacters.length} words
@@ -36,11 +36,11 @@ export default async function Hsk({ params }: { params: { hsk: string } }) {
           ))}
         </ul>
       </details>
-      <section className="grid gap-8 max-w-2xl">
+      <section className="grid gap-8 max-w-2xl w-full">
         {entries.map((entry) => (
           <DictionaryEntryCard entry={entry} key={entry.id} />
         ))}
       </section>
-    </main>
+    </>
   );
 }

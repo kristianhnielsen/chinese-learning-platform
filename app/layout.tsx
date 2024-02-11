@@ -19,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-slate-950 scroll-smooth scroll-p-8 min-h-screen flex`}
+        className={`${inter.className} bg-slate-950 scroll-smooth text-light scroll-p-8 min-h-screen flex`}
       >
         <SideNav />
-        {children}
+        <main className="flex flex-col items-center gap-8 p-12 w-full">
+          {children}
+        </main>
       </body>
     </html>
   );

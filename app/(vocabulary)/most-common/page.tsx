@@ -20,8 +20,8 @@ export default async function MostCommonCharacters(params: {
   const uniqueCharacters = getUniqueCharacters(entries);
 
   return (
-    <main className="flex flex-col items-center text-light gap-8 p-12 w-full">
-      <h1 className=" text-primary font-semibold text-2xl">
+    <>
+      <h1 className=" text-primary font-semibold text-2xl text-center">
         Most Common Characters
       </h1>
       <MostCommonCharactersPagination
@@ -57,7 +57,7 @@ export default async function MostCommonCharacters(params: {
         maxPageNum={100}
         currentPageNum={currentPageNum}
       />
-    </main>
+    </>
   );
 }
 
@@ -73,50 +73,53 @@ const MostCommonCharactersPagination = ({
   const prevPageNum = currentPageNum - 1;
 
   return (
-    <div className="flex gap-8 text-light">
-      <a
-        href={`/most-common?page=${minPageNum}`}
-        title="First"
-        className={twMerge(
-          "hover:underline flex gap-2 items-center",
-          prevPageNum < minPageNum && "pointer-events-none text-light/50"
-        )}
-      >
-        <AiFillFastBackward /> First
-      </a>
-      |
-      <a
-        href={`/most-common?page=${prevPageNum}`}
-        title="Previous"
-        className={twMerge(
-          "hover:underline flex gap-2 items-center",
-          prevPageNum < minPageNum && "pointer-events-none text-light/50"
-        )}
-      >
-        <AiFillBackward /> Previous
-      </a>
-      |
-      <a
-        href={`/most-common?page=${nextPageNum}`}
-        title="Next"
-        className={twMerge(
-          "hover:underline flex gap-2 items-center",
-          nextPageNum > maxPageNum && "pointer-events-none text-light/50"
-        )}
-      >
-        Next <AiFillForward />
-      </a>
-      |
-      <a
-        href={`/most-common?page=${maxPageNum}`}
-        title="Last"
-        className={twMerge(
-          "hover:underline flex gap-2 items-center",
-          nextPageNum > maxPageNum && "pointer-events-none text-light/50"
-        )}
-      >
-        Last <AiFillFastForward />
-      </a>
+    <div className="flex gap-2 items-center flex-col w-full">
+      <div className="flex gap-4">
+        <a
+          href={`/most-common?page=${minPageNum}`}
+          title="First"
+          className={twMerge(
+            "hover:underline flex gap-2 items-center",
+            prevPageNum < minPageNum && "pointer-events-none text-light/50"
+          )}
+        >
+          <AiFillFastBackward /> First
+        </a>
+        |
+        <a
+          href={`/most-common?page=${prevPageNum}`}
+          title="Previous"
+          className={twMerge(
+            "hover:underline flex gap-2 items-center",
+            prevPageNum < minPageNum && "pointer-events-none text-light/50"
+          )}
+        >
+          <AiFillBackward /> Previous
+        </a>
+      </div>
+      <div className="flex gap-4">
+        <a
+          href={`/most-common?page=${nextPageNum}`}
+          title="Next"
+          className={twMerge(
+            "hover:underline flex gap-2 items-center",
+            nextPageNum > maxPageNum && "pointer-events-none text-light/50"
+          )}
+        >
+          Next <AiFillForward />
+        </a>
+        |
+        <a
+          href={`/most-common?page=${maxPageNum}`}
+          title="Last"
+          className={twMerge(
+            "hover:underline flex gap-2 items-center",
+            nextPageNum > maxPageNum && "pointer-events-none text-light/50"
+          )}
+        >
+          Last <AiFillFastForward />
+        </a>
+      </div>
     </div>
   );
 };
