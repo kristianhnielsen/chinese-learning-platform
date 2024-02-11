@@ -9,9 +9,9 @@ export default function DictionaryEntryCard({
     <div
       key={entry.id}
       id={entry.simplified!}
-      className="grid gap-4 border-2 rounded-lg border-light p-4"
+      className="grid md:gap-4 gap-2 border-2 rounded-lg border-light p-4"
     >
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-x-4 gap-y-2 items-center flex-wrap">
         <div className="text-primary flex gap-2 text-2xl">
           <a
             className="hover:underline underline-offset-4"
@@ -31,9 +31,11 @@ export default function DictionaryEntryCard({
           </p>
         )}
       </div>
-      <ul className="p-4 list-disc list-inside bg-light/10 rounded-lg grid gap-2">
+      <ul className="p-4 list-disc list-inside bg-light/10 text-sm md:text-base rounded-lg grid gap-2">
         {splitEnglishDefinitions(entry)?.map((englishDefinition) => (
-          <li key={englishDefinition}>{englishDefinition}</li>
+          <li key={englishDefinition} className="text-balance">
+            {englishDefinition}
+          </li>
         ))}
       </ul>
     </div>
