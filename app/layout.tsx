@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`${inter.className} bg-slate-950 scroll-smooth text-light scroll-p-8 min-h-screen flex`}
       >
         <SideNav />
-        <main className="flex flex-col items-center gap-8 p-12 w-full">
+        <main className="flex flex-col items-center gap-8 px-6 py-12 w-full">
           {children}
         </main>
       </body>
