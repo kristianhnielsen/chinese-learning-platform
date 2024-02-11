@@ -1,43 +1,28 @@
-"use client";
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import {
-  Fa1,
-  Fa2,
-  Fa3,
-  Fa4,
-  Fa5,
-  Fa6,
-  FaA,
-  FaArrowDown19,
-  FaBookOpen,
-  FaLanguage,
-} from "react-icons/fa6";
+import { FaArrowDown19, FaBookOpen, FaLanguage } from "react-icons/fa6";
 
 export default function SideNav() {
-  const [menuVisible, setMenuVisible] = useState(true);
   return (
     <nav
-      data-visible={menuVisible}
       className={twMerge(
-        "p-4 min-h-full flex flex-col gap-4 transition-all items-center text-light border-r-4 border-light",
-        !menuVisible && "w-4"
+        "p-4 min-h-full flex flex-col gap-4 transition-all items-center text-light border-r-4 border-light"
       )}
     >
       <SideNavLink className="flex items-center gap-2" href="/">
-        <FaLanguage className="h-8 w-8" />
+        <FaLanguage className="h-full w-full" />
       </SideNavLink>
-      <div className="grid gap-2">
-        <p className="flex gap-1 border-b-2 border-light/50">
-          <FaA className="h-8 w-8" />
-        </p>
-        <div className="grid gap-4 justify-center">
-          <SideNavLink href="/most-common">
-            <FaArrowDown19 />
-          </SideNavLink>
-          <SideNavLink href="/hsk-1">
+
+      <SideNavLink href="/most-common">
+        <FaArrowDown19 className="h-full w-full" />
+      </SideNavLink>
+      <SideNavLink href="/hsk" className="font-bold">
+        HSK
+      </SideNavLink>
+
+      {/* <SideNavLink href="/hsk-1">
             <Fa1 />
           </SideNavLink>
           <SideNavLink href="/hsk-2">
@@ -54,9 +39,7 @@ export default function SideNav() {
           </SideNavLink>
           <SideNavLink href="/hsk-6">
             <Fa6 />
-          </SideNavLink>
-        </div>
-      </div>
+          </SideNavLink> */}
     </nav>
   );
 }
@@ -73,7 +56,7 @@ function SideNavLink({
   return (
     <Link
       className={twMerge(
-        "hover:bg-light/10 rounded transition-all flex items-center gap-2",
+        "hover:bg-light/10 p-2 rounded w-12 aspect-square transition-all flex items-center gap-2",
         className
       )}
       href={href}

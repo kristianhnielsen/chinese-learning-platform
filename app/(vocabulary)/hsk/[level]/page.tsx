@@ -3,10 +3,10 @@ import { getUniqueCharacters } from "@/app/lib/utils";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
 import { redirect } from "next/navigation";
 
-export default async function Hsk({ params }: { params: { hsk: string } }) {
-  const hskLevel = Number(params.hsk.split("-")[1]);
-  if (hskLevel > 6) {
-    redirect("/");
+export default async function Level({ params }: { params: { level: string } }) {
+  const hskLevel = Number(params.level);
+  if (hskLevel > 6 || isNaN(hskLevel)) {
+    redirect("/hsk");
   }
 
   const entries = await getHskEntries(hskLevel);
