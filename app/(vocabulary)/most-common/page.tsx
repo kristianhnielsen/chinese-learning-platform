@@ -28,7 +28,7 @@ export default async function MostCommonCharacters(params: {
         maxPageNum={100}
         currentPageNum={currentPageNum}
       />
-      <details open className="place-self-start w-full">
+      <details open className="w-full max-w-screen-md">
         <summary className="text-accent font-semibold cursor-pointer">
           Character overview
         </summary>

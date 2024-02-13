@@ -19,7 +19,7 @@ export default async function Level({ params }: { params: { level: string } }) {
       <p>
         HSK {hskLevel} has {uniqueCharacters.length} words
       </p>
-      <details open className="place-self-start w-full">
+      <details open className="max-w-screen-md w-full">
         <summary className="text-accent font-semibold cursor-pointer">
           Character overview
         </summary>
