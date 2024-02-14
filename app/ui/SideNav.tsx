@@ -31,12 +31,14 @@ export default function SideNav() {
       <SideNavLink href="/hsk" className="font-bold">
         HSK
       </SideNavLink>
-      <button
-        onClick={signOut}
+      <form
+        action={signOut}
         className="hover:bg-light/10 p-2 mt-auto rounded w-12 group aspect-square transition-all flex items-center gap-2"
       >
-        <FaRightFromBracket className="h-full w-full group-hover:fill-red-500/50 transition-all" />
-      </button>
+        <button className="w-full">
+          <FaRightFromBracket className="h-full w-full group-hover:fill-red-500/50 transition-all" />
+        </button>
+      </form>
     </nav>
   );
 }
