@@ -21,25 +21,6 @@ export default function SideNav() {
       <SideNavLink href="/hsk" className="font-bold">
         HSK
       </SideNavLink>
-
-      {/* <SideNavLink href="/hsk-1">
-            <Fa1 />
-          </SideNavLink>
-          <SideNavLink href="/hsk-2">
-            <Fa2 />
-          </SideNavLink>
-          <SideNavLink href="/hsk-3">
-            <Fa3 />
-          </SideNavLink>
-          <SideNavLink href="/hsk-4">
-            <Fa4 />
-          </SideNavLink>
-          <SideNavLink href="/hsk-5">
-            <Fa5 />
-          </SideNavLink>
-          <SideNavLink href="/hsk-6">
-            <Fa6 />
-          </SideNavLink> */}
     </nav>
   );
 }
