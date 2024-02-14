@@ -1,8 +1,15 @@
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
-import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { FaArrowDown19, FaBookOpen, FaLanguage } from "react-icons/fa6";
+import {
+  FaArrowDown19,
+  FaBookOpen,
+  FaCircleUser,
+  FaLanguage,
+  FaRightFromBracket,
+  FaUser,
+} from "react-icons/fa6";
+import { signOut } from "../lib/auth";
 
 export default function SideNav() {
   return (
@@ -11,6 +18,9 @@ export default function SideNav() {
         "p-4 min-h-full flex flex-col gap-4 transition-all items-center text-light border-r-4 border-light"
       )}
     >
+      <SideNavLink href={"/login"}>
+        <FaCircleUser className="h-full w-full" />
+      </SideNavLink>
       <SideNavLink className="flex items-center gap-2" href="/">
         <FaLanguage className="h-full w-full" />
       </SideNavLink>
@@ -21,6 +31,12 @@ export default function SideNav() {
       <SideNavLink href="/hsk" className="font-bold">
         HSK
       </SideNavLink>
+      <button
+        onClick={signOut}
+        className="hover:bg-light/10 p-2 mt-auto rounded w-12 group aspect-square transition-all flex items-center gap-2"
+      >
+        <FaRightFromBracket className="h-full w-full group-hover:fill-red-500/50 transition-all" />
+      </button>
     </nav>
   );
 }
