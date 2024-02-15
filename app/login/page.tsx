@@ -1,4 +1,4 @@
-import { getUser, signIn, signUp } from "../lib/auth";
+import { getAuthUser, signIn, signUp } from "../lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function Login({
@@ -6,7 +6,7 @@ export default async function Login({
 }: {
   searchParams: { message: string };
 }) {
-  const user = await getUser();
+  const user = await getAuthUser();
   if (user) {
     redirect("/");
   }
