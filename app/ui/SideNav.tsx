@@ -1,4 +1,4 @@
-import { Url } from "next/dist/shared/lib/router/router";
+import type { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import {
