@@ -1,4 +1,4 @@
-import { getQueryFilteredDictionary } from "../lib/database";
+import { getQueryFilteredDictionary } from "../lib/database/dictionary";
 import { splitEnglishDefinitions } from "../lib/utils";
 
 export default async function DictEntries({
