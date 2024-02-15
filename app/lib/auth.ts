@@ -49,7 +49,7 @@ export const signOut = async () => {
   return redirect("/");
 };
 
-export const getUser = async () => {
+export const getAuthUser = async () => {
   const supabase = getSupabaseClient();
 
   const {
