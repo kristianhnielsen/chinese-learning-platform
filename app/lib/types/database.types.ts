@@ -51,6 +51,27 @@ export type Database = {
         };
         Relationships: [];
       };
+      users: {
+        Row: {
+          created_at: string;
+          id: string;
+          name: string | null;
+          progress: Json | null;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          name?: string | null;
+          progress?: Json | null;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          name?: string | null;
+          progress?: Json | null;
+        };
+        Relationships: [];
+      };
     };
     Views: {
       [_ in never]: never;
