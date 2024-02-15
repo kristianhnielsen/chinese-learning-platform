@@ -1,4 +1,4 @@
-import { getMostCommonEntries } from "@/app/lib/database";
+import { getMostCommonEntries } from "@/app/lib/database/dictionary";
 import { getUniqueCharacters } from "@/app/lib/utils";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
 import { redirect, usePathname, useSearchParams } from "next/navigation";

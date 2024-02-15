@@ -1,4 +1,4 @@
-import { getDictionaryEntry } from "@/app/lib/database";
+import { getDictionaryEntry } from "@/app/lib/database/dictionary";
 import { getUniqueCharacters, splitEnglishDefinitions } from "@/app/lib/utils";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
 import Link from "next/link";

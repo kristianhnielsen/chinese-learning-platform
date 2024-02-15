@@ -1,4 +1,4 @@
-import { getHskEntries } from "@/app/lib/database";
+import { getHskEntries } from "@/app/lib/database/dictionary";
 import { getUniqueCharacters } from "@/app/lib/utils";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
 import { redirect } from "next/navigation";
