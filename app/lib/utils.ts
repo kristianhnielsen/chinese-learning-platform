@@ -1,5 +1,3 @@
-import { getDictionaryEntry } from "./database";
-
 export const splitEnglishDefinitions = (entry: DictionaryEntry): string[] => {
   const englishArray = entry.english?.split("/");
 
@@ -18,11 +16,11 @@ export const removeDuplicates = (array: string[]): string[] => {
 };
 
 export const getUniqueCharacters = (
-  entries: DictionaryEntry[]
+  entries: DictionaryEntry[],
 ): DictionaryEntry[] => {
   return entries.filter(
     (element, index) =>
       entries.findIndex((obj) => obj.simplified === element.simplified) ===
-      index
+      index,
   );
 };
