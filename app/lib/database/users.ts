@@ -14,24 +14,6 @@ export async function getUser(authUser: User) {
     .eq("id", authUser.id)
     .single();
 
-  // create user in database if user doesn't already exist
-  if (!userData) {
-    createUser(authUser.id);
-    return await getUser(authUser);
-  }
-
-  if (error) throw error;
-
-  return userData;
-}
-
-export async function createUser(authUserId: string) {
-  const supabase = getSupabaseClient();
-
-  const { data: userData, error } = await supabase
-    .from("users")
-    .insert({ id: authUserId });
-
   if (error) throw error;
 
   return userData;
