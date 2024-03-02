@@ -8,9 +8,10 @@ import {
   FaLanguage,
   FaRightFromBracket,
 } from "react-icons/fa6";
-import { signOut } from "../lib/auth";
+import { getAuthUser, signOut } from "../lib/auth";
 
-export default function SideNav() {
+export default async function SideNav() {
+  const authUser = await getAuthUser();
   return (
     <nav
       className={twMerge(
@@ -18,7 +19,12 @@ export default function SideNav() {
       )}
     >
       <SideNavLink href={"/login"}>
-        <FaCircleUser className="h-full w-full" />
+        <FaCircleUser
+          className={twMerge(
+            "h-full w-full rounded-full border-2 p-0.5",
+            authUser ? "border-cyan-800" : "border-yellow-500",
+          )}
+        />
       </SideNavLink>
       <SideNavLink className="flex items-center gap-2" href="/">
         <FaLanguage className="h-full w-full" />
@@ -32,14 +38,16 @@ export default function SideNav() {
       <SideNavLink href="/learn">
         <FaBookOpenReader className="h-full w-full" />
       </SideNavLink>
-      <form
-        action={signOut}
-        className="group mt-auto flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
-      >
-        <button className="w-full">
-          <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-500/50" />
-        </button>
-      </form>
+      {authUser && (
+        <form
+          action={signOut}
+          className="group mt-auto flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
+        >
+          <button className="w-full">
+            <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-500/50" />
+          </button>
+        </form>
+      )}
     </nav>
   );
 }
