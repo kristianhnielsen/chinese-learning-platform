@@ -4,6 +4,11 @@ export const splitEnglishDefinitions = (entry: DictionaryEntry): string[] => {
   return removeDuplicates(englishArray!);
 };
 
+export const limitArray = (array: any[], limit: number) => {
+  if (array.length >= 3) return array.slice(0, limit);
+  else return array;
+};
+
 export const removeDuplicates = (array: string[]): string[] => {
   let uniqueStrings: string[] = [];
   array?.forEach((element) => {
