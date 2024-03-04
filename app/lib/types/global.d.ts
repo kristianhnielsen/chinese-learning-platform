@@ -6,7 +6,7 @@ declare global {
   type Progress = {
     id: number;
     score: number;
-  }[];
+  };
   type CharacterMatchSettings = {
     hsk1: boolean;
     hsk2: boolean;
