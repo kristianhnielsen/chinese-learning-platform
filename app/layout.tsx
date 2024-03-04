@@ -19,10 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} bg-slate-950 scroll-smooth text-light scroll-p-8 min-h-screen flex`}
+        className={`${inter.className} flex min-h-screen scroll-p-8 scroll-smooth bg-slate-950 text-light`}
       >
         <SideNav />
-        <main className="flex flex-col items-center gap-8 px-6 py-12 w-full">
+        <main className="flex w-full flex-col items-center gap-8 px-6 py-12">
           {children}
         </main>
       </body>
