@@ -1,178 +1,83 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CharacterMatchRoundCard from "./CharacterMatchRoundCard";
-
-interface GameProgress {
-  simplified: string;
-  english: string;
-  id: number;
-  correct: false;
-  incorrect: false;
-}
+import { updateUserProgress } from "@/app/lib/database/users";
+import {
+  getCharacterMatchData,
+  getEntryById,
+} from "@/app/lib/database/dictionary";
 
 export default function CharacterMatchGame({
   userProgress,
-  progressEntries,
-  dictionaryData,
+  userSettings,
 }: {
-  userProgress: Progress;
-  progressEntries: DictionaryEntry[] | null;
-  dictionaryData: DictionaryEntry[];
+  userProgress: Progress[];
+  userSettings: CharacterMatchSettings;
 }) {
   const [roundNumber, setRoundNumber] = useState(0);
+  const [gameProgress, setGameProgress] = useState<Progress[]>([]);
+  const [correctWord, setCorrectWord] = useState<DictionaryEntry>();
+  const [fillerWords, setFillerWords] = useState<DictionaryEntry[]>();
 
-  const [gameProgress, setGameProgress] = useState<GameProgress[]>([
-    {
-      simplified: "你",
-      english: "You",
-      id: 34,
-      correct: false,
-      incorrect: false,
-    },
-    {
-      simplified: "我",
-      english: "Me",
-      id: 67,
-      correct: false,
-      incorrect: false,
-    },
-  ]);
-
-  const handleNextClick = () => {};
-
-  // Get Correct words
-  let correctWords: DictionaryEntry[];
-  if (progressEntries && progressEntries.length > 5) {
-    // Get 5 known words
-    let knownWords = [];
-    for (let i = 0; i < 5; i++) {
-      const element =
-        progressEntries[Math.floor(Math.random() * progressEntries.length)];
-      knownWords.push(element);
+  const handleChoiceClick = (choice: DictionaryEntry) => {
+    if (roundNumber < 10) {
+      if (choice.id === correctWord!.id) {
+        setGameProgress((previousState) => [
+          ...previousState,
+          { id: correctWord!.id, score: 1 },
+        ]);
+      } else {
+        setGameProgress((previousState) => [
+          ...previousState,
+          { id: correctWord!.id, score: 0 },
+        ]);
+      }
+      setRoundNumber((currentRoundNumber) => currentRoundNumber + 1);
+    } else {
+      updateUserProgress(gameProgress);
     }
-    // Get 5 random words
-    let randomWords = [];
-    for (let i = 0; i < 5; i++) {
-      const element =
-        dictionaryData[Math.floor(Math.random() * dictionaryData.length)];
-      randomWords.push(element);
-    }
-
-    // Combine known words and random words into one array
-    correctWords = [...knownWords, ...randomWords];
-  } else {
-    // Get 10 random words
-    let randomWords = [];
-    for (let i = 0; i < 10; i++) {
-      const element =
-        dictionaryData[Math.floor(Math.random() * dictionaryData.length)];
-      randomWords.push(element);
-    }
-
-    correctWords = randomWords;
-  }
-
-  const getRandomEntries = () => {
-    let randomWords = [];
-    for (let i = 0; i < 3; i++) {
-      const element =
-        dictionaryData[Math.floor(Math.random() * dictionaryData.length)];
-      randomWords.push(element);
-    }
-    return randomWords;
   };
 
+  const hasUserProgress = async () => {
+    const randomUserProgressEntry =
+      userProgress[Math.floor(Math.random() * userProgress.length)];
+    const correctWord = await getEntryById(randomUserProgressEntry.id);
+    const randFillerWords = await getCharacterMatchData(userSettings, 3);
+
+    setCorrectWord(correctWord);
+    setFillerWords(randFillerWords);
+  };
+
+  const noUserProgress = async () => {
+    const randomWords = await getCharacterMatchData(userSettings, 4);
+    const randFillerWords = randomWords.slice(-3);
+    const correctWord = randomWords[0];
+
+    setFillerWords(randFillerWords);
+    setCorrectWord(correctWord);
+  };
+
+  useEffect(() => {
+    if (userProgress.length !== 0) {
+      hasUserProgress();
+    } else {
+      noUserProgress();
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [roundNumber]);
   return (
     <section className="grid gap-8">
-      {(() => {
-        switch (roundNumber) {
-          case 0:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[0]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 1:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[1]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 2:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[2]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 3:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[3]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 4:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[4]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 5:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[5]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 6:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[6]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 7:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[7]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 8:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[8]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-          case 9:
-            return (
-              <CharacterMatchRoundCard
-                correctWord={correctWords[9]}
-                fillerWords={getRandomEntries()}
-              />
-            );
-        }
-      })()}
-      <button
-        onClick={() => {
-          setGameProgress((previousState) => [
-            ...previousState,
-            gameProgress[roundNumber - 1],
-          ]);
-          setRoundNumber((currentRoundNumber) => currentRoundNumber + 1);
-        }}
-        className="items-center rounded-lg border border-light/10 p-4 hover:bg-light/10"
-      >
-        Next
-      </button>
-
-      <button onClick={() => handleNextClick()}>send</button>
+      <h2 className="justify-self-center">Round {roundNumber + 1}</h2>
+      {correctWord && fillerWords && (
+        <CharacterMatchRoundCard
+          key={roundNumber + correctWord.id}
+          correctWord={correctWord}
+          fillerWords={fillerWords}
+          handleChoiceClick={handleChoiceClick}
+        />
+      )}
     </section>
   );
 }

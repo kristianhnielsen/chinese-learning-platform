@@ -37,18 +37,54 @@ export async function updateUser(formData: FormData) {
   return redirect("/account?message=Changes saved");
 }
 
-export async function updateUserProgress(progressObj: Object[]) {
+export async function updateUserProgress(gameProgress: Progress[]) {
   const supabase = getSupabaseClient();
   const authUser = (await getAuthUser()) as User;
-  const jsonProgress = JSON.stringify(progressObj);
+  const updateUserProgressScore = (gameProgress: Progress) => {
+    return userProgress.map((item) =>
+      item.id === gameProgress.id
+        ? { ...item, score: (item.score += gameProgress.score) }
+        : item,
+    );
+  };
 
   const { data, error } = await supabase
     .from("users")
-    .upsert({ progress: jsonProgress })
+    .select("progress")
     .eq("id", authUser.id)
-    .select();
+    .single();
 
-  console.log("Obj: ", progressObj);
+  if (error) throw error;
+
+  // const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress;
+
+  // test\
+  gameProgress = [
+    { id: 693539, score: 1 },
+    { id: 693532, score: 1 },
+  ] as Progress[];
+  const userProgress = [
+    { id: 693539, score: 1 },
+    { id: 693532, score: 5 },
+    { id: 693533, score: 50 },
+  ] as Progress[];
+
+  if (userProgress.length == 0) {
+    const jsonProgress = JSON.stringify(gameProgress);
+    const { data, error } = await supabase
+      .from("users")
+      .upsert({ progress: jsonProgress })
+      .eq("id", authUser.id)
+      .select();
+
+    if (error) throw error;
+  } else {
+    gameProgress.forEach((gameProgressItem) =>
+      updateUserProgressScore(gameProgressItem),
+    );
+  }
+
+  console.log("updated user progress: ", userProgress);
   console.log("data: ", data);
 }
 
@@ -62,16 +98,7 @@ export async function getUserProgress(userId: string) {
 
   if (error) throw error;
 
-  const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress;
+  const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress[];
 
-  let progressEntries: DictionaryEntry[] | null = null;
-  if (userProgress.length != 0) {
-    let entryIds: number[] = [];
-    userProgress.forEach((element) => {
-      entryIds.push(element.id);
-    });
-    progressEntries = await getEntriesByIds(entryIds, 3);
-  }
-
-  return { userProgress, progressEntries };
+  return userProgress;
 }
