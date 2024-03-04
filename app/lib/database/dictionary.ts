@@ -132,3 +132,17 @@ export async function getEntriesByIds(entryIds: number[], limit: number) {
 
   return entryData;
 }
+
+export async function getEntryById(id: number) {
+  const supabase = getSupabaseClient();
+
+  const { data: entryData, error } = await supabase
+    .from("dictionary")
+    .select()
+    .eq("id", id)
+    .single();
+
+  if (error) throw error;
+
+  return entryData;
+}
