@@ -56,20 +56,10 @@ export async function updateUserProgress(gameProgress: Progress[]) {
 
   if (error) throw error;
 
-  // const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress;
-
-  // test\
-  gameProgress = [
-    { id: 693539, score: 1 },
-    { id: 693532, score: 1 },
-  ] as Progress[];
-  const userProgress = [
-    { id: 693539, score: 1 },
-    { id: 693532, score: 5 },
-    { id: 693533, score: 50 },
-  ] as Progress[];
+  const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress[];
 
   if (userProgress.length == 0) {
+    // No previous user progress --> send the game progress
     const jsonProgress = JSON.stringify(gameProgress);
     const { data, error } = await supabase
       .from("users")
@@ -79,6 +69,7 @@ export async function updateUserProgress(gameProgress: Progress[]) {
 
     if (error) throw error;
   } else {
+    // Has previous progress --> process game process and merge with existing progress before updating
     gameProgress.forEach((gameProgressItem) =>
       updateUserProgressScore(gameProgressItem),
     );
