@@ -13,11 +13,7 @@ import { getAuthUser, signOut } from "../lib/auth";
 export default async function SideNav() {
   const authUser = await getAuthUser();
   return (
-    <nav
-      className={twMerge(
-        "flex min-h-full flex-col items-center gap-4 border-r-4 border-light p-4 text-light transition-all",
-      )}
-    >
+    <nav className="flex min-h-full flex-col items-center gap-4 border-r-4 border-light p-4 text-light transition-all">
       <SideNavLink href={"/login"}>
         <FaCircleUser
           className={twMerge(
@@ -26,7 +22,7 @@ export default async function SideNav() {
           )}
         />
       </SideNavLink>
-      <SideNavLink className="flex items-center gap-2" href="/">
+      <SideNavLink href="/">
         <FaLanguage className="h-full w-full" />
       </SideNavLink>
       <SideNavLink href="/most-common">
@@ -63,10 +59,7 @@ function SideNavLink({
 }) {
   return (
     <Link
-      className={twMerge(
-        "flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10",
-        className,
-      )}
+      className="flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
       href={href}
     >
       {children}
