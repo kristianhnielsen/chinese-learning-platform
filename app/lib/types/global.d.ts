@@ -3,10 +3,9 @@ import type { Database as DB } from "@/app/lib/types/database.types";
 declare global {
   type Database = DB;
   type DictionaryEntry = DB["public"]["Tables"]["dictionary"]["Row"];
-  type Progress = {
-    id: number;
+  interface Progress extends DictionaryEntry {
     score: number;
-  };
+  }
   type CharacterMatchSettings = {
     hsk1: boolean;
     hsk2: boolean;
