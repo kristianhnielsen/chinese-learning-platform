@@ -16,6 +16,15 @@ const config: Config = {
         secondary: "#911c51",
         accent: "#d99339",
       },
+      animation: {
+        fadeInDown: "fadeInDown 300ms linear",
+      },
+      keyframes: {
+        fadeInDown: {
+          from: { opacity: "0", transform: "translate3d(0, -100%, 0)" },
+          to: { opacity: "1", transform: "translate3d(0, 0, 0)" },
+        },
+      },
     },
   },
   plugins: [],
