@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getAuthUser } from "../lib/auth";
 import { getUser, updateUser } from "../lib/database/users";
+import UserProgressDataDisplay from "./UserProgressDataDisplay";
 
 export default async function Account({
   searchParams,
@@ -42,6 +43,7 @@ export default async function Account({
           </p>
         )}
       </form>
+      <UserProgressDataDisplay authUserId={authUser.id} />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import { getDictionaryEntry } from "@/app/lib/database/dictionary";
-import { getUniqueCharacters, splitEnglishDefinitions } from "@/app/lib/utils";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
 import Link from "next/link";
 
@@ -12,40 +11,40 @@ export default async function EntryPage({
   const firstEntry = entries[0];
 
   return (
-    <main className="text-light flex min-h-screen flex-col gap-2 p-8 w-full">
+    <main className="flex min-h-screen w-full flex-col gap-2 p-8 text-light">
       <Link
         href={"/"}
-        className="bg-light text-dark p-4 rounded-full w-fit hover:bg-light/80 transition-all"
+        className="w-fit rounded-full bg-light p-4 text-dark transition-all hover:bg-light/80"
       >
         &larr; Back
       </Link>
 
-      <div className="grid gap-8 justify-center w-full">
-        <h1 className="text-primary text-9xl justify-self-center">
+      <div className="grid w-full justify-center gap-8">
+        <h1 className="justify-self-center text-9xl text-primary">
           {firstEntry.simplified}
         </h1>
         {firstEntry.simplified?.length! > 1 && (
-          <div className="w-full flex justify-center gap-4 items-center">
+          <div className="flex w-full items-center justify-center gap-4">
             <p>Contains:</p>
             {firstEntry.simplified?.split("").map((character) => (
               <a
                 href={`/dictionary/${character}`}
                 key={character}
-                className="text-lg hover:underline underline-offset-4"
+                className="text-lg underline-offset-4 hover:underline"
               >
                 {character}
               </a>
             ))}
           </div>
         )}
-        <div className="text-sm flex gap-8 justify-center">
+        <div className="flex justify-center gap-8 text-sm">
           {firstEntry.hsk && <p>HSK: {firstEntry.hsk}</p>}
           {firstEntry.frequency && <p>Frequency: {firstEntry.frequency}</p>}
           {firstEntry.radical && <p>Radical: {firstEntry.radical}</p>}
           {firstEntry.strokes && <p>Strokes: {firstEntry.strokes}</p>}
         </div>
 
-        <section className="flex gap-8 flex-wrap max-w-2xl">
+        <section className="flex max-w-2xl flex-wrap gap-8">
           {entries.map((entry) => (
             <DictionaryEntryCard entry={entry} key={entry.id} />
           ))}
