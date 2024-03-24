@@ -37,7 +37,7 @@ export default async function EntryPage({
           {firstEntry.strokes && <p>Strokes: {firstEntry.strokes}</p>}
         </div>
 
-        <section className="flex max-w-2xl flex-wrap gap-8">
+        <section className="grid max-w-2xl grid-cols-2 gap-8">
           {entries.map((entry) => (
             <DictionaryEntryCard entry={entry} key={entry.id} />
           ))}
