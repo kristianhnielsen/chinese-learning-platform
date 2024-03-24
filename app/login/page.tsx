@@ -14,9 +14,9 @@ export default async function Login({
   return (
     <>
       <h1>Login</h1>
-      <div className="flex h-screen w-full flex-1 flex-col justify-center gap-2 px-8 sm:max-w-md">
+      <div className="flex flex-1 flex-col justify-center gap-2 sm:max-w-md">
         <form
-          className="animate-in flex w-full flex-1 flex-col justify-center gap-2 text-light"
+          className="flex flex-1 flex-col justify-center gap-2 text-light"
           action={signIn}
         >
           <label htmlFor="email">Email</label>
@@ -44,7 +44,7 @@ export default async function Login({
             Sign Up
           </button>
           {searchParams?.message && (
-            <p className="mt-4 rounded-md bg-light/10 p-4 text-center text-light">
+            <p className="rounded-md bg-light/10 p-4 text-center text-light">
               {searchParams.message}
             </p>
           )}
