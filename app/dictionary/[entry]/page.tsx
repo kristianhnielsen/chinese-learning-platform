@@ -11,7 +11,7 @@ export default async function EntryPage({
   const firstEntry = entries[0];
 
   return (
-    <section className="flex w-full flex-col gap-2 text-light">
+    <section className="flex flex-col gap-2 text-light">
       <div className="grid w-full justify-center gap-8">
         <h1 className="justify-self-center">{firstEntry.simplified}</h1>
         {firstEntry.simplified?.length! > 1 && (
@@ -28,7 +28,7 @@ export default async function EntryPage({
             ))}
           </div>
         )}
-        <div className="flex justify-center gap-8 text-sm">
+        <div className="flex flex-wrap justify-center gap-4 text-sm md:gap-8">
           <p>Definitions: {entries.length}</p>
           {firstEntry.hsk && <p>HSK: {firstEntry.hsk}</p>}
           {firstEntry.frequency && <p>Frequency: {firstEntry.frequency}</p>}
