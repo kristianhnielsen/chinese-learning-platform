@@ -10,20 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        light: "#f1f1f1",
-        dark: "#062015",
-        primary: "#93eac7",
-        secondary: "#911c51",
-        accent: "#d99339",
-      },
-      animation: {
-        fadeInDown: "fadeInDown 300ms linear",
-      },
-      keyframes: {
-        fadeInDown: {
-          from: { opacity: "0", transform: "translate3d(0, -100%, 0)" },
-          to: { opacity: "1", transform: "translate3d(0, 0, 0)" },
-        },
+        light: "#e6e9ef",
+        dark: "#0c0f13",
+        primary: "#c084fc",
+        secondary: "#818cf8",
+        accent: "#fbbf24",
       },
     },
   },
