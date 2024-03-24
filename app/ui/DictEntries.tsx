@@ -11,12 +11,12 @@ export default async function DictEntries({
 }) {
   const filteredDictionary = await getQueryFilteredDictionary(
     searchParams?.query || "",
-    searchParams?.sort
+    searchParams?.sort,
   );
 
   return (
-    <section className="grid justify-items-center gap-4 w-full">
-      <div className="grid gap-2 text-light text-sm text-center">
+    <section className="grid w-full justify-items-center gap-4">
+      <div className="grid gap-2 text-center text-sm text-light">
         <p>
           Showing results for <em>{searchParams?.query}</em>
         </p>
@@ -30,21 +30,21 @@ export default async function DictEntries({
         )}
       </div>
       {filteredDictionary.length != 0 && (
-        <div className="bg-light text-dark flex flex-col overflow-y-scroll max-w-xl w-full max-h-80 rounded-lg">
+        <div className="flex max-h-80 w-full max-w-xl flex-col overflow-y-scroll rounded-lg bg-light text-dark">
           {filteredDictionary.map((dictEntry) => (
             <a
               key={dictEntry.id}
               href={`/dictionary/${dictEntry.simplified}`}
-              className="border-b-2 flex flex-col hover:bg-accent/20 p-4 transition-all border-accent"
+              className="flex flex-col border-b-2 border-accent p-4 transition-all hover:bg-accent/20"
             >
               <span>
-                <span className="text-secondary font-semibold">
+                <span className="font-semibold text-secondary">
                   {dictEntry.simplified}
                 </span>
                 {" - "}
                 <em>{dictEntry.pinyin_diacritic}</em>
               </span>
-              <span className="leading-tight text-ellipsis max-w-full overflow-x-clip text-nowrap">
+              <span className="max-w-full overflow-x-clip text-ellipsis text-nowrap leading-tight">
                 {splitEnglishDefinitions(dictEntry).join("; ")}
               </span>
             </a>
