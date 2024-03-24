@@ -12,13 +12,6 @@ export default async function EntryPage({
 
   return (
     <main className="flex min-h-screen w-full flex-col gap-2 p-8 text-light">
-      <Link
-        href={"/"}
-        className="w-fit rounded-full bg-light p-4 text-dark transition-all hover:bg-light/80"
-      >
-        &larr; Back
-      </Link>
-
       <div className="grid w-full justify-center gap-8">
         <h1 className="justify-self-center text-9xl text-primary">
           {firstEntry.simplified}
