@@ -20,7 +20,7 @@ export default async function Learn() {
           </p>
         </div>
       )}
-      <section className="grid grid-cols-2 gap-4">
+      <section className="grid gap-4 md:grid-cols-2">
         <GameCard
           href="/learn/character-match"
           title="Character Match"

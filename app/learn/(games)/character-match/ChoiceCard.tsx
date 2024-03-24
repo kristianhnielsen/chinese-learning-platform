@@ -23,7 +23,7 @@ export default function ChoiceCard({
     <button
       formAction={updateWordScoreWithData}
       className={twMerge(
-        "grid cursor-pointer items-center gap-2 rounded-lg border border-light/20 p-4 hover:bg-light/10",
+        "grid cursor-pointer gap-2 rounded-lg border border-light/20 p-4 hover:bg-light/10",
         isChoiceCorrect
           ? "focus:focus:bg-green-500/30"
           : "focus:focus:bg-red-500/30",

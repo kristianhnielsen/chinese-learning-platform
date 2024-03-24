@@ -1,13 +1,13 @@
 export default async function Hsk() {
   return (
     <>
-      <h1 className="text-primary text-center font-semibold text-2xl">
+      <h1 className="text-center text-2xl font-semibold text-primary">
         Hanyu Shuiping Kaoshi
         <br />
         汉语水平考试
       </h1>
 
-      <section className="max-w-screen-md grid gap-2">
+      <section className="grid max-w-screen-md gap-2">
         <p>
           The{" "}
           <a
@@ -30,14 +30,14 @@ export default async function Hsk() {
         <p>The tests can be taken online or in a paper-based format.</p>
       </section>
 
-      <section className="grid gap-2 text-xl items-center text-center w-full max-w-screen-md ">
-        <h2 className="text-secondary font-semibold">Character lists</h2>
-        <div className="flex justify-evenly px-12">
+      <section className="grid w-full max-w-screen-md items-center gap-2 text-center text-xl ">
+        <h2 className="font-semibold text-secondary">Character lists</h2>
+        <div className="flex flex-wrap justify-evenly gap-4 px-4">
           {[1, 2, 3, 4, 5, 6].map((levelNumber) => (
             <a
               key={levelNumber}
               href={`/hsk/${levelNumber}`}
-              className="hover:underline font-semibold"
+              className="font-semibold hover:underline"
             >
               HSK {levelNumber}
             </a>
