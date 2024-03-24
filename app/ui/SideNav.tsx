@@ -16,7 +16,7 @@ export default async function SideNav() {
     <nav className="flex min-h-full flex-col items-center gap-4 border-r-4 border-light p-4 text-light transition-all">
       <SideNavLink
         href="/"
-        className="flex flex-col gap-0 leading-tight outline-none outline-2 outline-light"
+        className="flex w-auto flex-col gap-0 p-1 leading-tight outline-none outline-2 outline-primary"
       >
         <span>易字</span>
         <span>词典</span>
@@ -48,7 +48,7 @@ export default async function SideNav() {
             className="group flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
           >
             <button className="w-full">
-              <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-500/50" />
+              <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-400" />
             </button>
           </form>
         )}
@@ -60,7 +60,7 @@ export default async function SideNav() {
 function SideNavLink({
   children,
   href,
-  className,
+  className: extClassName,
 }: {
   children: React.ReactNode;
   href: Url;
@@ -70,7 +70,7 @@ function SideNavLink({
     <Link
       className={twMerge(
         "flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10",
-        className,
+        extClassName,
       )}
       href={href}
     >
