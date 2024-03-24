@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex min-h-screen scroll-p-8 scroll-smooth bg-slate-950 text-light`}
+        className={`${inter.className} flex min-h-screen scroll-p-8 scroll-smooth bg-dark text-light`}
       >
         <SideNav />
         <main className="flex w-full flex-col items-center gap-8 p-6 pb-0">

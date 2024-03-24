@@ -16,7 +16,7 @@ export default async function CharacterMatchSettings({
   return (
     <>
       <form action={updateCharacterMatchSettings} className="grid gap-4">
-        <h1 className="text-2xl text-primary">Vocabulary settings</h1>
+        <h1>Vocabulary settings</h1>
         <div className="grid justify-center gap-2">
           <SettingsCheckBox
             defaultChecked={userSettings.hsk1}

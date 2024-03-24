@@ -15,20 +15,20 @@ export default async function Level({ params }: { params: { level: string } }) {
 
   return (
     <>
-      <h1 className=" text-primary font-semibold text-2xl">HSK {hskLevel}</h1>
+      <h1>HSK {hskLevel}</h1>
       <p>
         HSK {hskLevel} has {uniqueCharacters.length} words
       </p>
-      <details open className="max-w-screen-md w-full">
-        <summary className="text-accent font-semibold cursor-pointer">
+      <details className="w-full max-w-screen-md">
+        <summary className="cursor-pointer font-semibold text-accent">
           Character overview
         </summary>
-        <ul className="flex flex-wrap p-4 gap-x-8 gap-y-2">
+        <ul className="flex flex-wrap gap-x-8 gap-y-2 p-4">
           {uniqueCharacters.map((character) => (
             <li key={character.id}>
               <a
                 href={`#${character.simplified}`}
-                className="hover:text-secondary hover:underline underline-offset-4"
+                className="underline-offset-4 hover:text-secondary hover:underline"
               >
                 {character.simplified}
               </a>
@@ -36,7 +36,7 @@ export default async function Level({ params }: { params: { level: string } }) {
           ))}
         </ul>
       </details>
-      <section className="grid gap-8 max-w-2xl w-full">
+      <section className="grid w-full max-w-2xl gap-8">
         {entries.map((entry) => (
           <DictionaryEntryCard entry={entry} key={entry.id} />
         ))}

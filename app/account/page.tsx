@@ -17,7 +17,7 @@ export default async function Account({
 
   return (
     <>
-      <h1 className="text-2xl text-primary">Profile</h1>
+      <h1>Profile</h1>
       {user.name && <p>Welcome back {user.name}!</p>}
       <form action={updateUser} className="text-light">
         <label htmlFor="name" className="grid">

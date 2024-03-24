@@ -12,7 +12,7 @@ export default async function UserProgressDataDisplay({
 
   return (
     <section className="mt-12 grid w-full gap-4">
-      <h2 className="text-center text-xl text-secondary">Your Words</h2>
+      <h2 className="text-center">Your Words</h2>
 
       <div className="mr-6 grid grid-cols-4 justify-items-center">
         <p>Simplified</p>

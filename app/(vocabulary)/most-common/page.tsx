@@ -21,23 +21,21 @@ export default async function MostCommonCharacters(params: {
 
   return (
     <>
-      <h1 className=" text-primary font-semibold text-2xl text-center">
-        Most Common Characters
-      </h1>
+      <h1 className="text-center">Most Common Characters</h1>
       <MostCommonCharactersPagination
         maxPageNum={100}
         currentPageNum={currentPageNum}
       />
-      <details open className="w-full max-w-screen-md">
-        <summary className="text-accent font-semibold cursor-pointer">
+      <details className="w-full max-w-screen-md">
+        <summary className="cursor-pointer font-semibold text-accent">
           Character overview
         </summary>
-        <ul className="p-4 flex flex-wrap gap-x-8 gap-y-2">
+        <ul className="flex flex-wrap gap-x-8 gap-y-2 p-4">
           {uniqueCharacters.map((character) => (
             <li key={character.id}>
               <a
                 href={`#${character.simplified}`}
-                className="hover:text-secondary hover:underline underline-offset-4"
+                className="underline-offset-4 hover:text-secondary hover:underline"
               >
                 {character.simplified}
               </a>
@@ -45,7 +43,7 @@ export default async function MostCommonCharacters(params: {
           ))}
         </ul>
       </details>
-      <ol className="grid gap-8 max-w-2xl">
+      <ol className="grid max-w-2xl gap-8">
         {entries.map((entry) => (
           <li key={entry.id}>
             <span>#{entry.frequency}</span>
@@ -73,14 +71,14 @@ const MostCommonCharactersPagination = ({
   const prevPageNum = currentPageNum - 1;
 
   return (
-    <div className="flex gap-2 items-center flex-col w-full">
+    <div className="flex w-full flex-col items-center gap-2">
       <div className="flex gap-4">
         <a
           href={`/most-common?page=${minPageNum}`}
           title="First"
           className={twMerge(
-            "hover:underline flex gap-2 items-center",
-            prevPageNum < minPageNum && "pointer-events-none text-light/50"
+            "flex items-center gap-2 hover:underline",
+            prevPageNum < minPageNum && "pointer-events-none text-light/50",
           )}
         >
           <AiFillFastBackward /> First
@@ -90,8 +88,8 @@ const MostCommonCharactersPagination = ({
           href={`/most-common?page=${prevPageNum}`}
           title="Previous"
           className={twMerge(
-            "hover:underline flex gap-2 items-center",
-            prevPageNum < minPageNum && "pointer-events-none text-light/50"
+            "flex items-center gap-2 hover:underline",
+            prevPageNum < minPageNum && "pointer-events-none text-light/50",
           )}
         >
           <AiFillBackward /> Previous
@@ -102,8 +100,8 @@ const MostCommonCharactersPagination = ({
           href={`/most-common?page=${nextPageNum}`}
           title="Next"
           className={twMerge(
-            "hover:underline flex gap-2 items-center",
-            nextPageNum > maxPageNum && "pointer-events-none text-light/50"
+            "flex items-center gap-2 hover:underline",
+            nextPageNum > maxPageNum && "pointer-events-none text-light/50",
           )}
         >
           Next <AiFillForward />
@@ -113,8 +111,8 @@ const MostCommonCharactersPagination = ({
           href={`/most-common?page=${maxPageNum}`}
           title="Last"
           className={twMerge(
-            "hover:underline flex gap-2 items-center",
-            nextPageNum > maxPageNum && "pointer-events-none text-light/50"
+            "flex items-center gap-2 hover:underline",
+            nextPageNum > maxPageNum && "pointer-events-none text-light/50",
           )}
         >
           Last <AiFillFastForward />

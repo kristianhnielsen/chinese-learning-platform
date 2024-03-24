@@ -1,7 +1,7 @@
 export default async function Hsk() {
   return (
     <>
-      <h1 className="text-center text-2xl font-semibold text-primary">
+      <h1 className="text-center">
         Hanyu Shuiping Kaoshi
         <br />
         汉语水平考试
@@ -31,7 +31,7 @@ export default async function Hsk() {
       </section>
 
       <section className="grid w-full max-w-screen-md items-center gap-2 text-center text-xl ">
-        <h2 className="font-semibold text-secondary">Character lists</h2>
+        <h2>Character lists</h2>
         <div className="flex flex-wrap justify-evenly gap-4 px-4">
           {[1, 2, 3, 4, 5, 6].map((levelNumber) => (
             <a

@@ -8,7 +8,7 @@ export default async function Learn() {
 
   return (
     <>
-      <h1 className="text-2xl text-primary">Learn</h1>
+      <h1>Learn</h1>
       {!authUser && (
         <div className="">
           <p className="flex gap-1">
@@ -43,7 +43,7 @@ function GameCard({
   return (
     <div className="flex flex-col gap-2 rounded-lg border border-light/30 bg-light/0 p-2">
       <div className="grid gap-2">
-        <h2 className="font-semibold capitalize text-secondary">{title}</h2>
+        <h2 className="text-center capitalize text-secondary">{title}</h2>
         <p className="text-sm">{description}</p>
       </div>
       <div className="grid grid-cols-2 gap-1">

@@ -34,7 +34,7 @@ export default async function SideNav() {
         <FaBookOpenReader className="h-full w-full" />
       </SideNavLink>
       <div className="mt-auto grid gap-4">
-        <SideNavLink href={"/login"}>
+        <SideNavLink href={"/account"}>
           <FaCircleUser
             className={twMerge(
               "h-full w-full rounded-full border-2 p-0.5",

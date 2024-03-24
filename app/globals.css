@@ -1,3 +1,13 @@
 @tailwind base;
+
+@layer base {
+  h1 {
+    @apply text-5xl font-semibold text-primary;
+  }
+  h2 {
+    @apply text-2xl font-semibold text-primary;
+  }
+}
+
 @tailwind components;
 @tailwind utilities;

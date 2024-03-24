@@ -11,11 +11,9 @@ export default async function EntryPage({
   const firstEntry = entries[0];
 
   return (
-    <main className="flex min-h-screen w-full flex-col gap-2 p-8 text-light">
+    <section className="flex w-full flex-col gap-2 text-light">
       <div className="grid w-full justify-center gap-8">
-        <h1 className="justify-self-center text-9xl text-primary">
-          {firstEntry.simplified}
-        </h1>
+        <h1 className="justify-self-center">{firstEntry.simplified}</h1>
         {firstEntry.simplified?.length! > 1 && (
           <div className="flex w-full items-center justify-center gap-4">
             <p>Contains:</p>
@@ -31,18 +29,19 @@ export default async function EntryPage({
           </div>
         )}
         <div className="flex justify-center gap-8 text-sm">
+          <p>Definitions: {entries.length}</p>
           {firstEntry.hsk && <p>HSK: {firstEntry.hsk}</p>}
           {firstEntry.frequency && <p>Frequency: {firstEntry.frequency}</p>}
           {firstEntry.radical && <p>Radical: {firstEntry.radical}</p>}
           {firstEntry.strokes && <p>Strokes: {firstEntry.strokes}</p>}
         </div>
 
-        <section className="grid max-w-2xl grid-cols-2 gap-8">
+        <section className="grid gap-8 px-8 md:grid-cols-2 lg:grid-cols-3">
           {entries.map((entry) => (
             <DictionaryEntryCard entry={entry} key={entry.id} />
           ))}
         </section>
       </div>
-    </main>
+    </section>
   );
 }
