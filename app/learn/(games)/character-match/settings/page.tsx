@@ -4,6 +4,7 @@ import {
   updateCharacterMatchSettings,
 } from "@/app/lib/database/settings";
 import { User } from "@supabase/supabase-js";
+import { twJoin, twMerge } from "tailwind-merge";
 
 export default async function CharacterMatchSettings({
   searchParams,
@@ -14,9 +15,9 @@ export default async function CharacterMatchSettings({
   const userSettings = await getCharacterMatchSettings(authUser.id);
   return (
     <>
-      <form action={updateCharacterMatchSettings}>
-        <p>Choose vocabulary</p>
-        <div className="grid gap-2">
+      <form action={updateCharacterMatchSettings} className="grid gap-4">
+        <h1 className="text-2xl text-primary">Vocabulary settings</h1>
+        <div className="grid justify-center gap-2">
           <SettingsCheckBox
             defaultChecked={userSettings.hsk1}
             value="hsk1"
@@ -48,10 +49,21 @@ export default async function CharacterMatchSettings({
             text="HSK 6"
           />
         </div>
-        <button type="submit">Save</button>
+        <button
+          type="submit"
+          className="mb-2 flex w-full items-center justify-center gap-4 rounded-md border border-light/20 bg-green-700 px-4 py-2 transition-all"
+        >
+          Save
+        </button>
       </form>
       {searchParams?.message && (
-        <p className="mt-4 rounded-md bg-light/10 p-4 text-center text-light">
+        <p
+          className={twJoin(
+            "mt-4 rounded-md bg-light/10 p-4 text-center text-light",
+            searchParams.message === "Please select at least one" &&
+              "bg-red-500/50",
+          )}
+        >
           {searchParams.message}
         </p>
       )}

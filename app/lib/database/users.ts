@@ -4,7 +4,6 @@ import { getSupabaseClient } from "@/utils/supabase/server";
 import { User } from "@supabase/supabase-js";
 import { getAuthUser } from "../auth";
 import { redirect } from "next/navigation";
-import { getEntriesByIds } from "./dictionary";
 
 export async function getUser(authUser: User) {
   const supabase = getSupabaseClient();
@@ -37,59 +36,18 @@ export async function updateUser(formData: FormData) {
   return redirect("/account?message=Changes saved");
 }
 
-export async function updateUserProgress(gameProgress: Progress[]) {
+export async function getUserWords(authUserId: string) {
   const supabase = getSupabaseClient();
-  const authUser = (await getAuthUser()) as User;
-  const updateUserProgressScore = (gameProgress: Progress) => {
-    return userProgress.map((item) =>
-      item.id === gameProgress.id
-        ? { ...item, score: (item.score += gameProgress.score) }
-        : item,
-    );
-  };
 
-  const { data, error } = await supabase
-    .from("users")
-    .select("progress")
-    .eq("id", authUser.id)
-    .single();
+  const { data, error } = await supabase.from("character-match").select(
+    `
+      score,
+      dictionary_id, 
+      dictionary ( id, simplified, pinyin_diacritic, pinyin_numerical, hsk)
+    `,
+  );
 
   if (error) throw error;
 
-  const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress[];
-
-  if (userProgress.length == 0) {
-    // No previous user progress --> send the game progress
-    const jsonProgress = JSON.stringify(gameProgress);
-    const { data, error } = await supabase
-      .from("users")
-      .upsert({ progress: jsonProgress })
-      .eq("id", authUser.id)
-      .select();
-
-    if (error) throw error;
-  } else {
-    // Has previous progress --> process game process and merge with existing progress before updating
-    gameProgress.forEach((gameProgressItem) =>
-      updateUserProgressScore(gameProgressItem),
-    );
-  }
-
-  console.log("updated user progress: ", userProgress);
-  console.log("data: ", data);
-}
-
-export async function getUserProgress(userId: string) {
-  const supabase = getSupabaseClient();
-  const { data, error } = await supabase
-    .from("users")
-    .select("progress")
-    .eq("id", userId)
-    .single();
-
-  if (error) throw error;
-
-  const userProgress = JSON.parse(JSON.stringify(data.progress)) as Progress[];
-
-  return userProgress;
+  return data;
 }

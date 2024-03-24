@@ -1,7 +1,7 @@
 import { Url } from "next/dist/shared/lib/router/router";
 import Link from "next/link";
 import { getAuthUser } from "../lib/auth";
-import { FaGear } from "react-icons/fa6";
+import { FaGear, FaPlay } from "react-icons/fa6";
 
 export default async function Learn() {
   const authUser = await getAuthUser();
@@ -41,18 +41,25 @@ function GameCard({
   description: string;
 }) {
   return (
-    <Link
-      href={href}
-      className="flex flex-col items-center gap-2 rounded-lg border border-light/30 bg-light/0 p-4 transition-all duration-200 hover:bg-light/5"
-    >
-      <h2 className="font-semibold capitalize text-secondary">{title}</h2>
-      <p className="text-sm">{description}</p>
-      <Link
-        href={`${href}/settings`}
-        className="self-end rounded-lg p-2 hover:bg-light/5"
-      >
-        <FaGear />
-      </Link>
-    </Link>
+    <div className="flex flex-col gap-2 rounded-lg border border-light/30 bg-light/0 p-2">
+      <div className="grid gap-2">
+        <h2 className="font-semibold capitalize text-secondary">{title}</h2>
+        <p className="text-sm">{description}</p>
+      </div>
+      <div className="grid grid-cols-2 gap-1">
+        <Link
+          href={href}
+          className="grid justify-items-center rounded-lg p-4 transition-all duration-200 hover:bg-light/5"
+        >
+          <FaPlay className="h-6 w-6" />
+        </Link>
+        <Link
+          href={`${href}/settings`}
+          className="grid justify-items-center rounded-lg p-4 transition-all duration-200 hover:bg-light/5 "
+        >
+          <FaGear className="h-6 w-6" />
+        </Link>
+      </div>
+    </div>
   );
 }

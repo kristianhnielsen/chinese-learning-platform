@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import SideNav from "./ui/SideNav";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,7 +21,7 @@ export default function RootLayout({
         className={`${inter.className} flex min-h-screen scroll-p-8 scroll-smooth bg-slate-950 text-light`}
       >
         <SideNav />
-        <main className="flex w-full flex-col items-center gap-8 px-6 py-12">
+        <main className="flex w-full flex-col items-center gap-8 p-6 pb-0">
           {children}
         </main>
       </body>

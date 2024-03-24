@@ -43,6 +43,13 @@ export async function updateCharacterMatchSettings(formData: FormData) {
   const hsk6 = Boolean(formData.get("hsk6"));
   const nonhsk = Boolean(formData.get("nonhsk"));
 
+  if (!hsk1 && !hsk2 && !hsk3 && !hsk4 && !hsk5 && !hsk6) {
+    // Must have at least one checked
+    return redirect(
+      "/learn/character-match/settings?message=Please select at least one",
+    );
+  }
+
   const { error } = await supabase
     .from("settings")
     .upsert({
@@ -59,8 +66,10 @@ export async function updateCharacterMatchSettings(formData: FormData) {
     .eq("id", authUser.id);
 
   if (error) {
-    return redirect("/account?message=Something went wrong, try again");
+    return redirect(
+      "/learn/character-match/settings?message=Something went wrong, try again",
+    );
   }
 
-  return redirect("/account?message=Changes saved");
+  return redirect("/learn/character-match/settings?message=Changes saved");
 }
