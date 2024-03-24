@@ -1,6 +1,5 @@
 import { getDictionaryEntry } from "@/app/lib/database/dictionary";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
-import Link from "next/link";
 
 export default async function EntryPage({
   params,
