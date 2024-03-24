@@ -11,8 +11,8 @@ export default function Home({
   return (
     <>
       <hgroup className="grid items-center gap-2 text-center">
-        <h1 className="text-5xl font-bold text-primary">易字词典</h1>
-        <p>Easy Dictionary</p>
+        <h1>易字词典</h1>
+        <p className="text-2xl text-secondary">Easy Dictionary</p>
       </hgroup>
       <DictSearch />
       {searchParams?.query && <DictEntries searchParams={searchParams} />}
