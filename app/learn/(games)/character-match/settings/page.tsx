@@ -4,6 +4,8 @@ import {
   updateCharacterMatchSettings,
 } from "@/app/lib/database/settings";
 import { User } from "@supabase/supabase-js";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa6";
 import { twJoin, twMerge } from "tailwind-merge";
 
 export default async function CharacterMatchSettings({
@@ -15,6 +17,12 @@ export default async function CharacterMatchSettings({
   const userSettings = await getCharacterMatchSettings(authUser.id);
   return (
     <>
+      <Link
+        href="/learn"
+        className="flex items-center gap-1 self-start rounded-full bg-light p-2 text-dark hover:underline"
+      >
+        <FaArrowLeft /> Back to Learn
+      </Link>
       <form action={updateCharacterMatchSettings} className="grid gap-4">
         <h1>Vocabulary settings</h1>
         <div className="grid justify-center gap-2">
