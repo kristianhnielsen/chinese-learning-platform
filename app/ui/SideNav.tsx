@@ -14,13 +14,12 @@ export default async function SideNav() {
   const authUser = await getAuthUser();
   return (
     <nav className="flex min-h-full flex-col items-center gap-4 border-r-4 border-light p-4 text-light transition-all">
-      <SideNavLink href={"/login"}>
-        <FaCircleUser
-          className={twMerge(
-            "h-full w-full rounded-full border-2 p-0.5",
-            authUser ? "border-cyan-800" : "border-yellow-500",
-          )}
-        />
+      <SideNavLink
+        href="/"
+        className="flex flex-col gap-0 leading-tight outline-none outline-2 outline-light"
+      >
+        <span>易字</span>
+        <span>词典</span>
       </SideNavLink>
       <SideNavLink href="/">
         <FaLanguage className="h-full w-full" />
@@ -34,16 +33,26 @@ export default async function SideNav() {
       <SideNavLink href="/learn">
         <FaBookOpenReader className="h-full w-full" />
       </SideNavLink>
-      {authUser && (
-        <form
-          action={signOut}
-          className="group mt-auto flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
-        >
-          <button className="w-full">
-            <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-500/50" />
-          </button>
-        </form>
-      )}
+      <div className="mt-auto grid gap-4">
+        <SideNavLink href={"/login"}>
+          <FaCircleUser
+            className={twMerge(
+              "h-full w-full rounded-full border-2 p-0.5",
+              authUser ? "border-cyan-800" : "border-yellow-500",
+            )}
+          />
+        </SideNavLink>
+        {authUser && (
+          <form
+            action={signOut}
+            className="group flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
+          >
+            <button className="w-full">
+              <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-500/50" />
+            </button>
+          </form>
+        )}
+      </div>
     </nav>
   );
 }
@@ -59,7 +68,10 @@ function SideNavLink({
 }) {
   return (
     <Link
-      className="flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10"
+      className={twMerge(
+        "flex aspect-square w-12 items-center gap-2 rounded p-2 transition-all hover:bg-light/10",
+        className,
+      )}
       href={href}
     >
       {children}
