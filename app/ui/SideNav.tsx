@@ -13,7 +13,7 @@ import { getAuthUser, signOut } from "../lib/auth";
 export default async function SideNav() {
   const authUser = await getAuthUser();
   return (
-    <nav className="flex min-h-full flex-col items-center gap-4 border-r-4 border-light p-4 text-light transition-all">
+    <nav className="sticky top-0 flex max-h-dvh min-h-full flex-col items-center gap-4 border-r-4 border-light p-4 text-light transition-all">
       <SideNavLink
         href="/"
         className="flex w-auto flex-col gap-0 p-1 leading-tight outline-none outline-2 outline-primary"
