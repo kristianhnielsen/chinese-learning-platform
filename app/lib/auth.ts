@@ -15,7 +15,7 @@ export const signIn = async (formData: FormData) => {
   });
 
   if (error) {
-    return redirect("/login?message=Could not authenticate user");
+    return redirect(`/login?message=${error.message}`);
   }
 
   return redirect("/account");
@@ -36,7 +36,7 @@ export const signUp = async (formData: FormData) => {
   });
 
   if (error) {
-    return redirect("/login?message=Could not authenticate user");
+    return redirect(`/login?message=${error.message}`);
   }
 
   return redirect("/login?message=Check email to continue sign in process");
