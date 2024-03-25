@@ -39,13 +39,16 @@ export async function updateUser(formData: FormData) {
 export async function getUserWords(authUserId: string) {
   const supabase = getSupabaseClient();
 
-  const { data, error } = await supabase.from("character-match").select(
-    `
+  const { data, error } = await supabase
+    .from("character-match")
+    .select(
+      `
       score,
       dictionary_id, 
       dictionary ( id, simplified, pinyin_diacritic, pinyin_numerical, hsk)
     `,
-  );
+    )
+    .eq("user_id", authUserId);
 
   if (error) throw error;
 
