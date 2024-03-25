@@ -14,11 +14,11 @@ export default async function Login({
 
   return (
     <>
-      <h1>Log In</h1>
-      <div className="flex max-w-md flex-1 flex-col justify-center gap-2">
+      <h1>Sign Up</h1>
+      <div className="flex flex-1 flex-col justify-center gap-2 sm:max-w-md">
         <form
           className="flex flex-1 flex-col justify-center gap-8 text-light"
-          action={signIn}
+          action={signUp}
         >
           <label htmlFor="email" className="grid">
             Email
@@ -40,8 +40,8 @@ export default async function Login({
               required
             />
           </label>
-          <button className="rounded-md bg-green-700 px-4 py-2 text-light">
-            {"Log In"}
+          <button className="rounded-md bg-secondary px-4 py-2 text-light">
+            {"Sign Up"}
           </button>
           {searchParams?.message && (
             <p className="text-balance rounded-md bg-light/10 p-4 text-center text-sm text-light">
@@ -49,10 +49,10 @@ export default async function Login({
             </p>
           )}
           <Link
-            href="/signup"
+            href="/login"
             className="mt-4 px-4 py-2 text-center text-light/80 underline"
           >
-            {"Don't have an account? Sign up!"}
+            {"I already have an account"}
           </Link>
         </form>
       </div>
