@@ -31,7 +31,7 @@ export default async function Login({
             className="mb-6 rounded-md border bg-inherit px-4 py-2"
             type="password"
             name="password"
-            placeholder="••••••••"
+            placeholder="Your password..."
             required
           />
           <button className="mb-2 rounded-md bg-green-700 px-4 py-2 text-light">
