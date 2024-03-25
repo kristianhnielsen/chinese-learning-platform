@@ -1,6 +1,6 @@
 "use server";
 
-import { headers, cookies } from "next/headers";
+import { headers } from "next/headers";
 import { getSupabaseClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -14,7 +14,11 @@ export const signIn = async (formData: FormData) => {
     password,
   });
 
-  if (error) {
+  if (error?.status === 400) {
+    // AuthApiError - error.message == Invalid login credentials
+    return redirect(`/login?message=E-mail and password doesn't match`);
+  } else if (error) {
+    // Any other error
     return redirect(`/login?message=${error.message}`);
   }
 
@@ -36,10 +40,10 @@ export const signUp = async (formData: FormData) => {
   });
 
   if (error) {
-    return redirect(`/login?message=${error.message}`);
+    return redirect(`/signup?message=${error.message}`);
   }
 
-  return redirect("/login?message=Check email to continue sign in process");
+  return redirect("/signup?message=Check email to continue sign in process");
 };
 
 export const signOut = async () => {
