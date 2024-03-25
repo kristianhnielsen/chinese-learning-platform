@@ -11,7 +11,7 @@ export default async function UserProgressDataDisplay({
   const userWordsSortedByScore = userWords.sort((a, b) => b.score - a.score);
 
   return (
-    <section className="mt-12 grid w-full gap-4">
+    <section className="mt-12 grid w-full max-w-screen-md gap-4">
       <h2 className="text-center">Your Words</h2>
       {userWords.length > 0 ? (
         <>
@@ -25,7 +25,7 @@ export default async function UserProgressDataDisplay({
             {userWordsSortedByScore.map((word) => (
               <div
                 key={word.dictionary_id}
-                className="grid max-w-screen-md grid-cols-4 gap-4 rounded-lg bg-light/15 p-2"
+                className="grid grid-cols-4 gap-4 rounded-lg bg-light/15 p-2"
               >
                 <Link
                   href={`/dictionary/${word.dictionary?.simplified}`}
