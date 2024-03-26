@@ -13,7 +13,7 @@ import { getAuthUser, signOut } from "../lib/auth";
 export default async function SideNav() {
   const authUser = await getAuthUser();
   return (
-    <nav className="sticky top-0 flex h-screen flex-col items-center gap-4 border-r-4 border-light p-2 py-6 text-light transition-all md:p-4">
+    <nav className="sticky top-0 flex h-screen max-h-dvh flex-col items-center gap-4 border-r-4 border-light p-2 py-6 text-light transition-all md:p-4">
       <p className="flex aspect-square w-auto flex-col items-center gap-0 rounded p-0 text-xs leading-tight outline-none outline-2 outline-primary md:w-12 md:text-base">
         <span>易字</span>
         <span>词典</span>
