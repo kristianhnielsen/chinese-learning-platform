@@ -19,9 +19,9 @@ export default async function CharacterMatch() {
   let fillerWords: DictionaryEntry[];
   let correctWord: DictionaryEntry;
 
-  if (userProgressData?.length >= 3 && Math.random() <= 1) {
+  if (userProgressData?.length >= 10 && Math.random() <= 0.2) {
     // User has more than 10 words in their previous progress
-    // Give the user a 30% chance of getting a word they have had before
+    // Give the user a 20% chance of getting a word they have had before
     const randomUserProgressIndex = Math.floor(
       Math.random() * userProgressData.length,
     );
