@@ -38,12 +38,14 @@ export default async function SideNav() {
           />
         </SideNavLink>
         {authUser && (
-          <button
+          <form
+            action={signOut}
             className="group flex aspect-square w-10 items-center gap-2 rounded p-2 transition-all hover:bg-light/10 md:w-12"
-            formAction={signOut}
           >
-            <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-400" />
-          </button>
+            <button type="submit" className="w-full">
+              <FaRightFromBracket className="h-full w-full transition-all group-hover:fill-red-400" />
+            </button>
+          </form>
         )}
       </div>
     </nav>
