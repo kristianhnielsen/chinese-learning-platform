@@ -2,14 +2,13 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { AiOutlineSearch } from "react-icons/ai";
-import { useDebouncedCallback } from "use-debounce";
 
 export default function DictSearch() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleSearch = useDebouncedCallback((term) => {
+  const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);
@@ -20,9 +19,9 @@ export default function DictSearch() {
       params.delete("query");
     }
     router.replace(`${pathname}?${params.toString()}`);
-  }, 50);
+  };
 
-  const handleSort = useDebouncedCallback((sortby: string) => {
+  const handleSort = (sortby: string) => {
     const params = new URLSearchParams(searchParams);
     if (sortby) {
       params.set("sort", sortby);
@@ -30,16 +29,16 @@ export default function DictSearch() {
       params.delete("sort");
     }
     router.replace(`${pathname}?${params.toString()}`);
-  }, 50);
+  };
 
   return (
-    <search className="flex items-center flex-col gap-4 w-full max-w-xl">
-      <div className="flex p-4 bg-light gap-2 items-center rounded-full w-full">
-        <AiOutlineSearch className="fill-dark w-8 h-8" />
+    <search className="flex w-full max-w-xl flex-col items-center gap-4">
+      <div className="flex w-full items-center gap-2 rounded-full bg-light p-4">
+        <AiOutlineSearch className="h-8 w-8 fill-dark" />
         <input
           type="text"
           placeholder="Search..."
-          className="text-dark text-xl indent-2 h-full w-full bg-light"
+          className="h-full w-full bg-light indent-2 text-xl text-dark"
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
@@ -47,12 +46,12 @@ export default function DictSearch() {
         />
       </div>
       {searchParams.get("query") && (
-        <label htmlFor="sort" className="text-light text-sm flex items-center">
+        <label htmlFor="sort" className="flex items-center text-sm text-light">
           <select
             name="sort"
             id="sort"
             defaultValue={searchParams.get("sort") || "frequency-asc"}
-            className="text-dark rounded-full px-4 py-2 bg-light"
+            className="rounded-full bg-light px-4 py-2 text-dark"
             onChange={(e) => handleSort(e.target.value)}
           >
             <option value="frequency-asc">Frequency Low To High</option>
