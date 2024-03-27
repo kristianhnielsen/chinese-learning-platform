@@ -31,7 +31,10 @@ export default async function Login({
             />
           </label>
           <label htmlFor="password" className="grid">
-            Password
+            <span className="flex items-center gap-2">
+              Password
+              <span className="text-xs text-secondary">min. 6 characters</span>
+            </span>
             <input
               className="rounded-md border bg-inherit px-4 py-2 valid:outline-green-700"
               type="password"
