@@ -15,33 +15,27 @@ export default async function UserProgressDataDisplay({
       <h2 className="text-center">Your Words</h2>
       {userWords.length > 0 ? (
         <>
-          <div className="mr-6 grid grid-cols-4 justify-items-center">
+          <div className="mr-1 grid grid-cols-3 justify-items-center text-xs md:mr-6 md:grid-cols-4 md:text-base">
             <p>Simplified</p>
             <p>Pinyin</p>
-            <p>HSK Level</p>
+            <p className="hidden md:block">HSK Level</p>
             <p>Score</p>
           </div>
-          <div className="grid max-h-48 gap-2 overflow-y-scroll">
+          <div className="grid max-h-48 gap-2 overflow-y-scroll text-sm md:text-base">
             {userWordsSortedByScore.map((word) => (
               <div
                 key={word.dictionary_id}
-                className="grid grid-cols-4 gap-4 rounded-lg bg-light/15 p-2"
+                className="grid grid-cols-3 items-center gap-4 rounded-lg bg-light/15 p-2 text-center md:grid-cols-4"
               >
                 <Link
                   href={`/dictionary/${word.dictionary?.simplified}`}
-                  className=" text-center underline-offset-4 hover:underline"
+                  className="underline-offset-4 hover:underline"
                 >
                   {word.dictionary?.simplified}
                 </Link>
-                <p className="border-l-4 border-light/50 text-center">
-                  {word.dictionary?.pinyin_diacritic}
-                </p>
-                <p className="border-l-4 border-light/50 text-center">
-                  {word.dictionary?.hsk}
-                </p>
-                <p className="border-l-4 border-light/50 text-center">
-                  {word.score}
-                </p>
+                <p>{word.dictionary?.pinyin_diacritic}</p>
+                <p className="hidden md:block">{word.dictionary?.hsk}</p>
+                <p>{word.score}</p>
               </div>
             ))}
           </div>
