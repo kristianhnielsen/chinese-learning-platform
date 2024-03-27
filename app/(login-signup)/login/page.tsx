@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { getAuthUser, signIn, signUp } from "../lib/auth";
+import { getAuthUser, signIn, signUp } from "../../lib/auth";
 import { redirect } from "next/navigation";
+import SubmitButton from "../../ui/SubmitButton";
 
 export default async function Login({
   searchParams,
@@ -40,9 +41,7 @@ export default async function Login({
               required
             />
           </label>
-          <button className="rounded-md bg-green-700 px-4 py-2 text-light">
-            {"Log In"}
-          </button>
+          <SubmitButton className="bg-green-700">Log In</SubmitButton>
           {searchParams?.message && (
             <p className="text-balance rounded-md bg-light/10 p-4 text-center text-sm text-light">
               {searchParams.message}

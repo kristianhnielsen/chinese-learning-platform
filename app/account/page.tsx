@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getAuthUser } from "../lib/auth";
 import { getUser, updateUser } from "../lib/database/users";
 import UserProgressDataDisplay from "./UserProgressDataDisplay";
+import SubmitButton from "../ui/SubmitButton";
 
 export default async function Account({
   searchParams,
@@ -31,12 +32,7 @@ export default async function Account({
             placeholder="What is your name?"
           />
         </label>
-        <button
-          type="submit"
-          className="group mb-2 flex w-full items-center justify-center gap-4 rounded-md border border-light/20 bg-green-700 px-4 py-2 transition-all"
-        >
-          Save
-        </button>
+        <SubmitButton className="w-full bg-green-700">Save</SubmitButton>
         {searchParams?.message && (
           <p className="mt-4 rounded-md bg-light/10 p-4 text-center text-light">
             {searchParams.message}
