@@ -10,7 +10,7 @@ export const signIn = async (formData: FormData) => {
   const supabase = getSupabaseClient();
 
   const { error } = await supabase.auth.signInWithPassword({
-    email,
+    email: email.trim().toLowerCase(),
     password,
   });
 
@@ -32,7 +32,7 @@ export const signUp = async (formData: FormData) => {
   const supabase = getSupabaseClient();
 
   const { error } = await supabase.auth.signUp({
-    email,
+    email: email.trim().toLowerCase(),
     password,
     options: {
       emailRedirectTo: `${origin}/auth/callback`,
