@@ -19,7 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="easy-dictionary.com" />
+        <script
+          defer
+          data-domain="easy-dictionary.com"
+          src="https://plausible.io/js/script.js"
+        ></script>
       </head>
       <body
         className={`${inter.className} flex scroll-p-8 scroll-smooth bg-dark text-light`}
