@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideNav from "./ui/SideNav";
+import PlausibleProvider from "next-plausible";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <PlausibleProvider domain="easy-dictionary.com" />
+      </head>
       <body
         className={`${inter.className} flex scroll-p-8 scroll-smooth bg-dark text-light`}
       >
