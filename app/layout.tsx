@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideNav from "./ui/SideNav";
-import PlausibleProvider from "next-plausible";
+import PlausibleAnalytics from "./(head)/PlausibleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          defer
-          data-domain="easy-dictionary.com"
-          src="https://plausible.io/js/script.js"
-        ></script>
+        <PlausibleAnalytics />
       </head>
       <body
         className={`${inter.className} flex scroll-p-8 scroll-smooth bg-dark text-light`}
