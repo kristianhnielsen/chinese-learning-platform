@@ -1,4 +1,26 @@
+import Link from "next/link";
 import { splitEnglishDefinitions } from "../lib/utils";
+
+const findSimplifiedClassifierCharacter = (classifier: string) => {
+  if (classifier.includes("|")) {
+    return classifier.split("|")[0];
+  } else {
+    return classifier;
+  }
+};
+
+const formatClassifierString = (classifier: string) => {
+  const classifiers = classifier.split("/");
+  let formattedClassifiers: { text: string; simplified: string }[] = [];
+  classifiers.map((classifierString) => {
+    formattedClassifiers.push({
+      text: classifierString,
+      simplified: findSimplifiedClassifierCharacter(classifierString),
+    });
+  });
+
+  return formattedClassifiers;
+};
 
 export default function DictionaryEntryCard({
   entry,
@@ -29,6 +51,21 @@ export default function DictionaryEntryCard({
           <p className="text-sm italic">
             {entry.categories?.split("/").join(", ")}
           </p>
+        )}
+        {entry.classifier && (
+          <div className="flex gap-4">
+            <p>CL:</p>
+
+            {formatClassifierString(entry.classifier).map((classifier) => (
+              <Link
+                className="underline-offset-4 hover:text-secondary hover:underline"
+                key={classifier.text}
+                href={`/dictionary/${classifier.simplified}`}
+              >
+                {classifier.text}
+              </Link>
+            ))}
+          </div>
         )}
       </div>
       <ul className="grid list-inside list-disc gap-2 rounded-lg bg-light/10 p-4 text-sm md:text-base">
