@@ -1,5 +1,6 @@
 import { getDictionaryEntry } from "@/app/lib/database/dictionary";
 import DictionaryEntryCard from "@/app/ui/DictionaryEntryCard";
+import Link from "next/link";
 
 export default async function EntryPage({
   params,
@@ -31,7 +32,17 @@ export default async function EntryPage({
           <p>Definitions: {entries.length}</p>
           {firstEntry.hsk && <p>HSK: {firstEntry.hsk}</p>}
           {firstEntry.frequency && <p>Frequency: {firstEntry.frequency}</p>}
-          {firstEntry.radical && <p>Radical: {firstEntry.radical}</p>}
+          {firstEntry.radical && (
+            <p>
+              Radical:{" "}
+              <Link
+                href={`/dictionary/${firstEntry.radical}`}
+                className="underline-offset-4 hover:text-secondary hover:underline"
+              >
+                {firstEntry.radical}
+              </Link>
+            </p>
+          )}
           {firstEntry.strokes && <p>Strokes: {firstEntry.strokes}</p>}
         </div>
 
