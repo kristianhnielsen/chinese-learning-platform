@@ -31,19 +31,12 @@ export type Database = {
           score?: number
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "public_character-match_dictionary_id_fkey"
-            columns: ["dictionary_id"]
-            isOneToOne: false
-            referencedRelation: "dictionary"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       dictionary: {
         Row: {
           categories: string | null
+          classifier: string | null
           english: string | null
           frequency: number | null
           hsk: string | null
@@ -57,6 +50,7 @@ export type Database = {
         }
         Insert: {
           categories?: string | null
+          classifier?: string | null
           english?: string | null
           frequency?: number | null
           hsk?: string | null
@@ -70,6 +64,7 @@ export type Database = {
         }
         Update: {
           categories?: string | null
+          classifier?: string | null
           english?: string | null
           frequency?: number | null
           hsk?: string | null
