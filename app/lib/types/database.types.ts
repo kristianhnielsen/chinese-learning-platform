@@ -31,7 +31,15 @@ export type Database = {
           score?: number
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "public_character-match_dictionary_id_fkey"
+            columns: ["dictionary_id"]
+            isOneToOne: false
+            referencedRelation: "dictionary"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       dictionary: {
         Row: {
