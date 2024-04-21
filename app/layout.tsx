@@ -3,12 +3,21 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SideNav from "./ui/SideNav";
 import PlausibleAnalytics from "./(head)/PlausibleAnalytics";
+import OpengraphImage from "./(head)/og image.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "易字词典 Easy Dictionary",
-  description: "Chinese dictionary and Chinese learning platform",
+  description: "Chinese-English dictionary and Chinese learning platform",
+  openGraph: {
+    type: "website",
+    url: "https://easy-dictionary.com",
+    title: "易字词典 Easy Dictionary",
+    description: "Chinese-English dictionary and Chinese learning platform",
+    siteName: "易字词典 Easy Dictionary",
+    images: [{ url: OpengraphImage.src, alt: "this is alt" }],
+  },
 };
 
 export default function RootLayout({
